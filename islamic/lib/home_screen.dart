@@ -19,8 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> bodyWidgets = [
     const RadioTab(),
     const TasbehTab(),
-    const HadethTab(),
-     QuranTab(),
+    HadethTab(),
+    QuranTab(),
   ];
 
   @override
