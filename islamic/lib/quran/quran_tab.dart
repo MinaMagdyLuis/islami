@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'chapter_title_widget.dart';
 
 class QuranTab extends StatelessWidget {
-  List<String> names = [
+ final List<String> names = [
     "الفاتحه",
     "البقرة",
     "آل عمران",
@@ -120,7 +120,7 @@ class QuranTab extends StatelessWidget {
     "الناس"
   ];
 
-  QuranTab({super.key});
+ QuranTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +134,7 @@ class QuranTab extends StatelessWidget {
           child: ListView.separated(
             separatorBuilder: (context, index) {
               return Container(
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).dividerColor,
                 width: double.infinity,
                 height: 3,
               );

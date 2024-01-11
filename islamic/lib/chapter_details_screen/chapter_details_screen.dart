@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamic/quran/verses_widget.dart';
 
-class   ChapterDetailsScreen extends StatefulWidget {
+import '../myThemeData.dart';
+
+class ChapterDetailsScreen extends StatefulWidget {
   static const String routeName = 'ChapterDetails';
 
   const ChapterDetailsScreen({
@@ -29,7 +31,9 @@ class _ChapterDetailsScreenState extends State<ChapterDetailsScreen> {
       decoration: BoxDecoration(
         image: DecorationImage(
             image: AssetImage(
-              'assets/images/main_background.png',
+              MyThemeData.isDarkTheme
+                  ? 'assets/images/main_background_dark.jpg'
+                  : 'assets/images/main_background.png',
             ),
             fit: BoxFit.fill),
       ),
@@ -49,7 +53,7 @@ class _ChapterDetailsScreenState extends State<ChapterDetailsScreen> {
                   child: ListView.separated(
                     separatorBuilder: (context, index) {
                       return Container(
-                        color: Theme.of(context).colorScheme.primary,
+                        color: Theme.of(context).dividerColor,
                         width: double.infinity,
                         height: 3,
                       );
