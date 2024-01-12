@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamic/hadeth/hadeth_tab.dart';
 import 'package:islamic/quran/quran_tab.dart';
 import 'package:islamic/radio/radio_tab.dart';
@@ -17,10 +18,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
 
   List<Widget> bodyWidgets = [
-    const RadioTab(),
-    const TasbehTab(),
-    HadethTab(),
     QuranTab(),
+    const HadethTab(),
+    const TasbehTab(),
+    const RadioTab(),
   ];
 
   @override
@@ -34,30 +35,32 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: Scaffold(
           body: bodyWidgets[selectedIndex],
-          appBar: AppBar(title: Text('Islamic')),
-          bottomNavigationBar:
-              BottomNavigationBar(onTap: (value) {
+          appBar: AppBar(title: Text(AppLocalizations.of(context)!.app_name)),
+          bottomNavigationBar: BottomNavigationBar(
+              onTap: (value) {
                 setState(() {
-                  selectedIndex=value;
+                  selectedIndex = value;
                 });
-              },currentIndex: selectedIndex, items: [
-            BottomNavigationBarItem(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                icon: Image.asset('assets/images/radio.png'),
-                label: 'Radio'),
-            BottomNavigationBarItem(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                icon: Image.asset('assets/images/sebha.png'),
-                label: 'Tasbeh'),
-            BottomNavigationBarItem(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                icon: Image.asset('assets/images/moshaf.png'),
-                label: 'Hadeth'),
-            BottomNavigationBarItem(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                icon: Image.asset('assets/images/quran.png'),
-                label: 'Quran'),
-          ]),
+              },
+              currentIndex: selectedIndex,
+              items: [
+                BottomNavigationBarItem(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    icon: Image.asset('assets/images/quran.png'),
+                    label: AppLocalizations.of(context)!.quran),
+                BottomNavigationBarItem(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    icon: Image.asset('assets/images/moshaf.png'),
+                    label: AppLocalizations.of(context)!.hadeth),
+                BottomNavigationBarItem(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    icon: Image.asset('assets/images/sebha.png'),
+                    label: AppLocalizations.of(context)!.tasbeh),
+                BottomNavigationBarItem(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    icon: Image.asset('assets/images/radio.png'),
+                    label: AppLocalizations.of(context)!.radio),
+              ]),
         ));
   }
 }

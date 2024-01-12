@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamic/hadeth/hadeth_title_widget.dart';
 
 class HadethTab extends StatefulWidget {
@@ -33,8 +34,8 @@ class _HadethTabState extends State<HadethTab> {
               ),
             ),
           ),
-          child: const Text(
-            'Hadeth',
+          child: Text(
+            AppLocalizations.of(context)!.hadeth,
             style: TextStyle(
               fontSize: 24,
             ),
