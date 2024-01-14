@@ -4,6 +4,13 @@
   "hadeth": "الحديث",
   "tasbeh": "التسبيح",
   "radio": "الاذاعة",
+  "settings": "الاعدادات",
   "hadeth_number": "رقم الحديث",
-  "chapter_name": "اسم السورة"
+  "chapter_name": "اسم السورة",
+  "theme": "المود",
+  "light": "نهاري",
+  "dark": "ليلي",
+  "language": "اللغة",
+  "english": "الانجليزية",
+  "arabic": "العربية"
 }

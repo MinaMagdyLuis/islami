@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LanguageBottomSheet extends StatefulWidget {
   const LanguageBottomSheet({Key? key}) : super(key: key);
@@ -18,8 +19,8 @@ class _ThemeBottomSheetState extends State<LanguageBottomSheet> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          showSelectedItem('Language'),
-          showUnselectedItem('English'),
+          showSelectedItem(AppLocalizations.of(context)!.language),
+          showUnselectedItem(AppLocalizations.of(context)!.english),
         ],
       ),
     );

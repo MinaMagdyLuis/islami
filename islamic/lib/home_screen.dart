@@ -5,6 +5,9 @@ import 'package:islamic/quran/quran_tab.dart';
 import 'package:islamic/radio/radio_tab.dart';
 import 'package:islamic/tasbeh/tasneh_tab.dart';
 
+import 'home/settings/setting_tab.dart';
+import 'myThemeData.dart';
+
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home';
 
@@ -16,12 +19,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<Widget> bodyWidgets = [
     QuranTab(),
     const HadethTab(),
     const TasbehTab(),
     const RadioTab(),
+    const SettingsTab(),
   ];
 
   @override
@@ -29,9 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/main_background.png',),
-            fit: BoxFit.fill
-          ),
+              image: AssetImage(
+                MyThemeData.isDarkTheme
+                    ? 'assets/images/main_background_dark.jpg'
+                    : 'assets/images/main_background.png',
+              ),
+              fit: BoxFit.fill),
         ),
         child: Scaffold(
           body: bodyWidgets[selectedIndex],
@@ -40,9 +48,11 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: (value) {
                 setState(() {
                   selectedIndex = value;
+                  _scaffoldKey.currentState?.hideCurrentBottomSheet();
                 });
               },
               currentIndex: selectedIndex,
+              key: _scaffoldKey,
               items: [
                 BottomNavigationBarItem(
                     backgroundColor: Theme.of(context).colorScheme.primary,
@@ -60,6 +70,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     icon: Image.asset('assets/images/radio.png'),
                     label: AppLocalizations.of(context)!.radio),
+                BottomNavigationBarItem(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    icon: const Icon(Icons.settings),
+                    label: AppLocalizations.of(context)!.settings),
               ]),
         ));
   }

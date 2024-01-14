@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../hadeth/hadeth_tab.dart';
+import '../myThemeData.dart';
 
 class HadethDetailsScreen extends StatelessWidget {
-  static const String routeName = 'hadethRout';
+  static const String routeName = 'hadethRoute';
 
   const HadethDetailsScreen({super.key});
 
@@ -15,7 +16,11 @@ class HadethDetailsScreen extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/images/main_background.png'),
+            image: AssetImage(
+              MyThemeData.isDarkTheme
+                  ? 'assets/images/main_background_dark.jpg'
+                  : 'assets/images/main_background.png',
+            ),
             fit: BoxFit.fill),
       ),
       child: Scaffold(
@@ -34,7 +39,7 @@ class HadethDetailsScreen extends StatelessWidget {
                     child: Text(
                       content.content,
                       textDirection: TextDirection.rtl,
-                      style: const TextStyle(fontSize: 20),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                 ),

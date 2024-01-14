@@ -53,7 +53,7 @@ class _HadethTabState extends State<HadethTab> {
                       margin: const EdgeInsets.symmetric(
                         horizontal: 48,
                       ),
-                      color: Theme.of(context).colorScheme.primary,
+                      color: Theme.of(context).dividerColor,
                       width: double.infinity,
                       height: 2,
                     );
