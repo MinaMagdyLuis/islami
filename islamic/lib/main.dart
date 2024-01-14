@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Islamic',
       theme: MyThemeData.lightTheme,
       darkTheme: MyThemeData.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       routes: {
         HomeScreen.routeName: (_) => const HomeScreen(),
         ChapterDetailsScreen.routeName: (_) => const ChapterDetailsScreen(),
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         Locale('en'), // English
         Locale('ar'), // Spanish
       ],
-      locale: const Locale('en'),
+      locale: const Locale('ar'),
     );
   }
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamic/hadeth/hadeth_tab.dart';
-//import 'package:islamic/home/settings/settings_tab.dart';
 import 'package:islamic/quran/quran_tab.dart';
 import 'package:islamic/radio/radio_tab.dart';
 import 'package:islamic/tasbeh/tasneh_tab.dart';
 
+import 'home/settings/setting_tab.dart';
 import 'myThemeData.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,15 +19,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<Widget> bodyWidgets = [
     QuranTab(),
     const HadethTab(),
     const TasbehTab(),
-
-    QuranTab(),
-    const SettingsTab(),
     const RadioTab(),
+    const SettingsTab(),
   ];
 
   @override
@@ -49,9 +48,11 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: (value) {
                 setState(() {
                   selectedIndex = value;
+                  _scaffoldKey.currentState?.hideCurrentBottomSheet();
                 });
               },
               currentIndex: selectedIndex,
+              key: _scaffoldKey,
               items: [
                 BottomNavigationBarItem(
                     backgroundColor: Theme.of(context).colorScheme.primary,
@@ -72,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 BottomNavigationBarItem(
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     icon: const Icon(Icons.settings),
-                    label: 'Settings'),
+                    label: AppLocalizations.of(context)!.settings),
               ]),
         ));
   }

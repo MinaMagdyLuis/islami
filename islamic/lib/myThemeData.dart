@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyThemeData {
-  static bool isDarkTheme = false;
+  static bool isDarkTheme = true;
   static const Color lightPrimary = Color(0xFFB7935F);
 
   static const Color darkPrimary = Color(0xFF141A2E);
@@ -25,8 +25,9 @@ class MyThemeData {
           fontSize: 20,
         ),
       ),
-      bottomSheetTheme:
-          const BottomSheetThemeData(backgroundColor: Colors.white),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: Colors.white,
+      ),
       dividerColor: lightPrimary,
       cardTheme: CardTheme(
           surfaceTintColor: Colors.white,
