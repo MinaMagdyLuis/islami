@@ -4,9 +4,18 @@ import 'package:islamic/chapter_details_screen/chapter_details_screen.dart';
 import 'package:islamic/hadeth_details/hadeth_details_screen.dart';
 import 'package:islamic/home_screen.dart';
 import 'package:islamic/myThemeData.dart';
+import 'package:islamic/provider/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider<SettingsProvider>(
+      create: (BuildContext context) {
+        return SettingsProvider();
+      },
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,12 +23,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Islamic',
       theme: MyThemeData.lightTheme,
       darkTheme: MyThemeData.darkTheme,
-      themeMode: ThemeMode.dark,
+      themeMode: settingsProvider.currentTheme,
       routes: {
         HomeScreen.routeName: (_) => const HomeScreen(),
         ChapterDetailsScreen.routeName: (_) => const ChapterDetailsScreen(),
@@ -31,7 +41,7 @@ class MyApp extends StatelessWidget {
         Locale('en'), // English
         Locale('ar'), // Spanish
       ],
-      locale: const Locale('ar'),
+      locale: Locale(settingsProvider.currentLanguage),
     );
   }
 }

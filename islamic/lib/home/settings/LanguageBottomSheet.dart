@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islamic/provider/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 class LanguageBottomSheet extends StatefulWidget {
   const LanguageBottomSheet({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class LanguageBottomSheet extends StatefulWidget {
 class _ThemeBottomSheetState extends State<LanguageBottomSheet> {
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     final size = MediaQuery.of(context).size;
     return Container(
       height: size.height * 0.4,
@@ -19,8 +21,24 @@ class _ThemeBottomSheetState extends State<LanguageBottomSheet> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          showSelectedItem(AppLocalizations.of(context)!.language),
-          showUnselectedItem(AppLocalizations.of(context)!.english),
+          InkWell(
+            onTap: () {
+              settingsProvider.changeLanguage('en');
+              Navigator.of(context).pop();
+            },
+            child: settingsProvider.isEnglishEnabled()
+                ? showSelectedItem("English")
+                : showUnselectedItem("English"),
+          ),
+          InkWell(
+            onTap: () {
+              settingsProvider.changeLanguage('ar');
+              Navigator.of(context).pop();
+            },
+            child: settingsProvider.isEnglishEnabled()
+                ? showUnselectedItem("العربية")
+                : showSelectedItem("العربية"),
+          ),
         ],
       ),
     );
@@ -43,9 +61,13 @@ class _ThemeBottomSheetState extends State<LanguageBottomSheet> {
   }
 
   Widget showUnselectedItem(String text) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.titleMedium,
+    return Row(
+      children: [
+        Text(
+          text,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+      ],
     );
   }
 }
