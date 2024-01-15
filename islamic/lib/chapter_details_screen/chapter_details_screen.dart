@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islamic/provider/settings_provider.dart';
 import 'package:islamic/quran/verses_widget.dart';
-
-import '../myThemeData.dart';
+import 'package:provider/provider.dart';
 
 class ChapterDetailsScreen extends StatefulWidget {
   static const String routeName = 'ChapterDetails';
@@ -20,20 +20,18 @@ class _ChapterDetailsScreenState extends State<ChapterDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     final chapterDetailsArgs =
         ModalRoute.of(context)!.settings.arguments as ChapterDetailsArgs;
 
     if (verses.isEmpty) {
       loadFiles(chapterDetailsArgs.index);
-
     }
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
             image: AssetImage(
-              MyThemeData.isDarkTheme
-                  ? 'assets/images/main_background_dark.jpg'
-                  : 'assets/images/main_background.png',
+              settingsProvider.getBackgroundImage(),
             ),
             fit: BoxFit.fill),
       ),
@@ -43,28 +41,28 @@ class _ChapterDetailsScreenState extends State<ChapterDetailsScreen> {
         ),
         body: verses.isEmpty
             ? const Center(
-                child: CircularProgressIndicator(),
-              )
+          child: CircularProgressIndicator(),
+        )
             : Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Card(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 48, horizontal: 24),
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) {
-                      return Container(
-                        color: Theme.of(context).dividerColor,
-                        width: double.infinity,
-                        height: 3,
-                      );
-                    },
-                    itemBuilder: (context, index) {
-                      return VersesWidget(title: verses[index], index: index);
-                    },
-                    itemCount: verses.length,
-                  ),
-                ),
-              ),
+          padding: const EdgeInsets.all(8.0),
+          child: Card(
+            margin:
+            const EdgeInsets.symmetric(vertical: 48, horizontal: 24),
+            child: ListView.separated(
+              separatorBuilder: (context, index) {
+                return Container(
+                  color: Theme.of(context).dividerColor,
+                  width: double.infinity,
+                  height: 3,
+                );
+              },
+              itemBuilder: (context, index) {
+                return VersesWidget(title: verses[index], index: index);
+              },
+              itemCount: verses.length,
+            ),
+          ),
+        ),
       ),
     );
   }

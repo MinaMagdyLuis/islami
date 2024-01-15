@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamic/hadeth/hadeth_tab.dart';
+import 'package:islamic/provider/settings_provider.dart';
 import 'package:islamic/quran/quran_tab.dart';
 import 'package:islamic/radio/radio_tab.dart';
 import 'package:islamic/tasbeh/tasneh_tab.dart';
+import 'package:provider/provider.dart';
 
 import 'home/settings/setting_tab.dart';
-import 'myThemeData.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home';
@@ -19,7 +20,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<Widget> bodyWidgets = [
     QuranTab(),
@@ -31,13 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return Container(
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                MyThemeData.isDarkTheme
-                    ? 'assets/images/main_background_dark.jpg'
-                    : 'assets/images/main_background.png',
+                settingsProvider.getBackgroundImage(),
               ),
               fit: BoxFit.fill),
         ),
@@ -48,11 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: (value) {
                 setState(() {
                   selectedIndex = value;
-                  _scaffoldKey.currentState?.hideCurrentBottomSheet();
                 });
               },
               currentIndex: selectedIndex,
-              key: _scaffoldKey,
               items: [
                 BottomNavigationBarItem(
                     backgroundColor: Theme.of(context).colorScheme.primary,

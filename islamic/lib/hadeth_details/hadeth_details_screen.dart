@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:islamic/provider/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../hadeth/hadeth_tab.dart';
-import '../myThemeData.dart';
 
 class HadethDetailsScreen extends StatelessWidget {
   static const String routeName = 'hadethRoute';
@@ -10,6 +11,7 @@ class HadethDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     SingleHadethData content =
         ModalRoute.of(context)!.settings.arguments as SingleHadethData;
     List<String> lines = content.content.split('\n');
@@ -17,9 +19,7 @@ class HadethDetailsScreen extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
             image: AssetImage(
-              MyThemeData.isDarkTheme
-                  ? 'assets/images/main_background_dark.jpg'
-                  : 'assets/images/main_background.png',
+              settingsProvider.getBackgroundImage(),
             ),
             fit: BoxFit.fill),
       ),
@@ -32,7 +32,7 @@ class HadethDetailsScreen extends StatelessWidget {
             Expanded(
               child: Card(
                 margin:
-                    const EdgeInsets.symmetric(vertical: 48, horizontal: 24),
+                const EdgeInsets.symmetric(vertical: 48, horizontal: 24),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: SingleChildScrollView(
