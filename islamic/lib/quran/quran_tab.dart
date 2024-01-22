@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'chapter_title_widget.dart';
 
 class QuranTab extends StatelessWidget {
- final List<String> names = [
+  final List<String> names = [
     "الفاتحه",
     "البقرة",
     "آل عمران",
@@ -120,7 +121,7 @@ class QuranTab extends StatelessWidget {
     "الناس"
   ];
 
- QuranTab({super.key});
+  QuranTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -129,19 +130,36 @@ class QuranTab extends StatelessWidget {
         Expanded(
             flex: 1,
             child: Image.asset('assets/images/quran_header_image.png')),
+        Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            border: Border.symmetric(
+              horizontal:
+                  BorderSide(color: Theme.of(context).dividerColor, width: 3),
+            ),
+          ),
+          child: Text(
+            AppLocalizations.of(context)!.chapter_name,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+        ),
         Expanded(
           flex: 3,
           child: ListView.separated(
             separatorBuilder: (context, index) {
               return Container(
+                margin: const EdgeInsets.symmetric(horizontal: 60),
                 color: Theme.of(context).dividerColor,
                 width: double.infinity,
-                height: 3,
+                height: 2,
               );
             },
             itemCount: names.length,
             itemBuilder: (BuildContext context, int index) {
-              return ChapterTitleWidget(title: names[index],index: index,);
+              return ChapterTitleWidget(
+                title: names[index],
+                index: index,
+              );
             },
           ),
         ),

@@ -4,7 +4,7 @@ import 'package:islamic/hadeth/hadeth_tab.dart';
 import 'package:islamic/provider/settings_provider.dart';
 import 'package:islamic/quran/quran_tab.dart';
 import 'package:islamic/radio/radio_tab.dart';
-import 'package:islamic/tasbeh/tasneh_tab.dart';
+import 'package:islamic/tasbeh/tasbeh_tab.dart';
 import 'package:provider/provider.dart';
 
 import 'home/settings/setting_tab.dart';

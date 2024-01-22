@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MyThemeData {
   static const Color lightPrimary = Color(0xFFB7935F);
 
-  static const Color darkPrimary = Color(0xFF141A2E);
+  static const Color darkPrimary = Color(0xFF141A2E); //
   static const Color darkSecondary = Color(0xffFACC1D);
 
   static ThemeData lightTheme = ThemeData(
@@ -43,13 +43,20 @@ class MyThemeData {
           color: Colors.black,
         ),
       ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: lightPrimary,
+        ),
+      ),
       colorScheme: ColorScheme.fromSeed(
           seedColor: lightPrimary,
           primary: lightPrimary,
           onPrimary: Colors.white,
           secondary: const Color(0x87B7935F),
           onSecondary: Colors.black,
-          background: Colors.white),
+          primaryContainer: const Color(0x57B7935F),
+          background: Colors.white,
+          onBackground: Colors.white),
       useMaterial3: true,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedIconTheme: IconThemeData(
@@ -97,6 +104,8 @@ class MyThemeData {
         color: Colors.white,
       ),
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(backgroundColor: darkSecondary)),
     colorScheme: ColorScheme.fromSeed(
       seedColor: darkPrimary,
       primary: darkPrimary,
@@ -104,6 +113,8 @@ class MyThemeData {
       secondary: darkSecondary,
       onSecondary: Colors.white,
       background: darkPrimary,
+      onBackground: Colors.black,
+      primaryContainer: Color(0x80141A2E),
     ),
     useMaterial3: true,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(

@@ -10,5 +10,10 @@
   "theme": "المود",
   "light": "نهاري",
   "dark": "ليلي",
-  "language": "اللغة"
+  "language": "اللغة",
+  "tasbeh_number": "عدد التسبيحات",
+  "sobhan_allah": "سبحان الله",
+  "elhamd_llah": "الحمد لله",
+  "allah_akba": "الله اكبر",
+  "la_elallah_el_allah": "لا اله الا الله"
 }
